@@ -12,8 +12,8 @@ import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory
 
 import java.util.List;
 
-public class AdminCustomersPage extends AdminBasePage{
-	AdminCustomersPage(WebDriver driver) {
+public class CustomersPage extends BasePage {
+	public CustomersPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(new HtmlElementDecorator(new HtmlElementLocatorFactory(driver)), this);
 	}
@@ -34,7 +34,7 @@ public class AdminCustomersPage extends AdminBasePage{
 	@FindBy(id = "input-confirm")
 	private WebElement confirmLocator;
 
-	public AdminCustomersPage addNewCustomer(Customer customer) {
+	public CustomersPage addNewCustomer(Customer customer) {
 		actionPanel.add();
 		firstNameLocator.sendKeys(customer.getFirstName());
 		lastNameLocator.sendKeys(customer.getLastName());

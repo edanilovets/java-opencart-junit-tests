@@ -41,7 +41,7 @@ public class CategoryPage extends BasePage {
 
   public void mouseOverMainMenuItemByLinkText(String link){
     Actions action = new Actions(driver);
-    List<WebElement> topLevelMenuItems = driver.findElements(By.cssSelector("#menu > div > ul > li > a"));
+    List<WebElement> topLevelMenuItems = driver.findElements(By.cssSelector("#leftMenu > div > ul > li > a"));
     for (WebElement item: topLevelMenuItems){
       if (item.getText().equals(link)) {
         action.moveToElement(item).build().perform();

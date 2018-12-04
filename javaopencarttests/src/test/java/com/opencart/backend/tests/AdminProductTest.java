@@ -3,37 +3,58 @@ package com.opencart.backend.tests;
 import com.opencart.backend.model.Product;
 import com.opencart.backend.model.ProductRegistry;
 import com.opencart.backend.model.UserRegistry;
-import com.opencart.backend.pages.AdminProductsPage;
-import com.opencart.backend.pages.AdminPage;
+import com.opencart.backend.pages.AddProductPage;
+import com.opencart.backend.pages.DashboardPage;
+import com.opencart.backend.pages.LoginPage;
+import com.opencart.backend.pages.ProductsPage;
 import org.junit.Assert;
 import org.junit.Test;
-
-
-import java.util.concurrent.ThreadLocalRandom;
 
 public class AdminProductTest extends AdminTestBase{
 
   @Test
   public void canAddNewProduct(){
-
-    AdminProductsPage adminProductsPage = new AdminPage(driver)
-            .open()
-            .loginAs(UserRegistry.getAdmin())
-            .gotoAdminProductsPage();
     Product product = ProductRegistry.getProduct();
-    //Product product = new Product().withProductName("Apple iPhoneX").withMetaTagTitle("iPhoneX").withProductModel("iPhoneX");
 
-    Assert.assertTrue(adminProductsPage.addNewProduct(product).isInProductsList(product));
+    DashboardPage dashboardPage = new LoginPage(driver)
+            .open()
+            .loginAs(UserRegistry.getAdmin());
+    AddProductPage addProductPage = dashboardPage.openProductsPage().clickAddNew();
+    ProductsPage productsPage = addProductPage.enterProductName(product.getProductName())
+            .enterMetaTagTitle(product.getMetaTagTitle())
+            .activateDataTab()
+            .enterProductModel(product.getProductModel())
+            .saveProduct();
+
+    Assert.assertTrue(productsPage.isInProductsList(product));
+
+  }
+
+  @Test
+  public void canCancelAddingOfNewProduct(){
+    Product product = ProductRegistry.getProduct();
+
+    DashboardPage dashboardPage = new LoginPage(driver)
+            .open()
+            .loginAs(UserRegistry.getAdmin());
+
+    Assert.assertTrue(dashboardPage.openProductsPage().isInNotProductsList(product));
+    Assert.assertTrue(dashboardPage.openProductsPage()
+            .clickAddNew()
+            .enterProductName(product.getProductName())
+            .enterMetaTagTitle(product.getMetaTagTitle())
+            .cancelProductEditing()
+            .isInNotProductsList(product));
   }
 
   @Test
   public void canEditProductAddImage(){
-    AdminProductsPage adminProductsPage = new AdminPage(driver)
-            .open()
-            .loginAs(UserRegistry.getAdmin())
-            .gotoAdminProductsPage();
-    int index = ThreadLocalRandom.current().nextInt(0, 20);
-    adminProductsPage.pressEditButtonByIndex(index)
-            .editProductAddImage();
+//    ProductsPage adminProductsPage = new LoginPage(driver)
+//            .open()
+//            .loginAs(UserRegistry.getAdmin())
+//            .openAdminProductsPage();
+//    int index = ThreadLocalRandom.current().nextInt(0, 20);
+//    adminProductsPage.pressEditButtonByIndex(index)
+//            .editProductAddImage();
   }
 }

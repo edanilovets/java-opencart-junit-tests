@@ -63,8 +63,8 @@ public class HomePage extends BasePage {
 
   public CategoryPage clickShowAllinFirstMenuItem() {
     Actions action = new Actions(driver);
-    WebElement firstMenuItem = driver.findElement(By.cssSelector("#menu > div.collapse.navbar-collapse.navbar-ex1-collapse > ul > li:nth-child(1) > a"));
-    WebElement showAll = driver.findElement(By.cssSelector("#menu > div.collapse.navbar-collapse.navbar-ex1-collapse > ul > li:nth-child(1) > div > a"));
+    WebElement firstMenuItem = driver.findElement(By.cssSelector("#leftMenu > div.collapse.navbar-collapse.navbar-ex1-collapse > ul > li:nth-child(1) > a"));
+    WebElement showAll = driver.findElement(By.cssSelector("#leftMenu > div.collapse.navbar-collapse.navbar-ex1-collapse > ul > li:nth-child(1) > div > a"));
     action.moveToElement(firstMenuItem).moveToElement(showAll).click().build().perform();
     return new CategoryPage(driver);
   }

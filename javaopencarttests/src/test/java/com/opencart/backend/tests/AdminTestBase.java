@@ -10,12 +10,12 @@ public class AdminTestBase {
   static WebDriver driver;
 
   @BeforeClass
-  public static void init() {
+  public static init() {
     driver = new ChromeDriver();
   }
 
   @AfterClass
-  public static void tearDown() {
+  public static tearDown() {
     driver.quit();
   }
 
