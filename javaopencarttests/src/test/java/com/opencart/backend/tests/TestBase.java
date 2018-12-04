@@ -6,16 +6,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 
-public class AdminTestBase {
+public class TestBase {
   static WebDriver driver;
 
   @BeforeClass
-  public static init() {
+  public static void init() {
     driver = new ChromeDriver();
   }
 
   @AfterClass
-  public static tearDown() {
+  public static void tearDown() {
     driver.quit();
   }
 

@@ -3,6 +3,7 @@ package com.opencart.backend.pages;
 import com.opencart.backend.model.Product;
 import com.opencart.backend.sections.ActionPanel;
 import com.opencart.backend.sections.AdminMenu;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,19 +16,23 @@ import java.util.List;
 
 public class ProductsPage extends BasePage {
 
-    public ProductsPage(WebDriver driver) {
+    ProductsPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(new HtmlElementDecorator(new HtmlElementLocatorFactory(driver)), this);
     }
 
     @FindBy(css = "#content > div.page-header > div > div")
     private ActionPanel actionPanel;
-    @FindBy(id = "menu")
-    private AdminMenu adminMenu;
 
     public AddProductPage clickAddNew(){
         actionPanel.add();
         return new AddProductPage(driver);
+    }
+
+    public ProductsPage deleteProduct(){
+        actionPanel.delete();
+        Alert alert = driver.switchTo().alert();
+        alert.accept();
+        return this;
     }
 
     public boolean isInProductsList(Product product) {
@@ -42,7 +47,7 @@ public class ProductsPage extends BasePage {
         return false;
     }
 
-    public boolean isInNotProductsList(Product product) {
+    public boolean isNotInProductsList(Product product) {
         return !isInProductsList(product);
     }
 
@@ -52,4 +57,16 @@ public class ProductsPage extends BasePage {
         return new AddProductPage(driver);
     }
 
+    public ProductsPage selectProductByIndex(int index) {
+        WebElement checkbox = driver.findElements(By.cssSelector("#form-product > div > table > tbody > tr > td > input[type=checkbox]")).get(index);
+        checkbox.click();
+        return this;
+    }
+
+    public Product getProductByIndex(int index) {
+        WebElement row = driver.findElements(By.cssSelector("#form-product > div > table > tbody > tr")).get(index);
+        return new Product().withProductName(row.findElements(By.cssSelector("td")).get(2).getText())
+                .withProductModel(row.findElements(By.cssSelector("td")).get(3).getText());
+
+    }
 }

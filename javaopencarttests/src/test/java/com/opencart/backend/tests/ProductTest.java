@@ -8,12 +8,15 @@ import com.opencart.backend.pages.DashboardPage;
 import com.opencart.backend.pages.LoginPage;
 import com.opencart.backend.pages.ProductsPage;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
-public class AdminProductTest extends AdminTestBase{
+import java.util.concurrent.ThreadLocalRandom;
+
+public class ProductTest extends TestBase {
 
   @Test
-  public void canAddNewProduct(){
+  public void canAddNewProductOnlyWithRequiredFields(){
     Product product = ProductRegistry.getProduct();
 
     DashboardPage dashboardPage = new LoginPage(driver)
@@ -38,16 +41,32 @@ public class AdminProductTest extends AdminTestBase{
             .open()
             .loginAs(UserRegistry.getAdmin());
 
-    Assert.assertTrue(dashboardPage.openProductsPage().isInNotProductsList(product));
+    Assert.assertTrue(dashboardPage.openProductsPage().isNotInProductsList(product));
     Assert.assertTrue(dashboardPage.openProductsPage()
             .clickAddNew()
             .enterProductName(product.getProductName())
             .enterMetaTagTitle(product.getMetaTagTitle())
             .cancelProductEditing()
-            .isInNotProductsList(product));
+            .isNotInProductsList(product));
   }
 
   @Test
+  public void canDeleteProductFromList(){
+    DashboardPage dashboardPage = new LoginPage(driver)
+            .open()
+            .loginAs(UserRegistry.getAdmin());
+    ProductsPage productsPage = dashboardPage.openProductsPage();
+    int index = ThreadLocalRandom.current().nextInt(0, 10);
+    Product product = productsPage.getProductByIndex(index);
+    Assert.assertTrue(productsPage.isInProductsList(product));
+    productsPage.selectProductByIndex(index)
+            .deleteProduct();
+    Assert.assertTrue(productsPage.isNotInProductsList(product));
+  }
+
+
+  @Test
+  @Ignore
   public void canEditProductAddImage(){
 //    ProductsPage adminProductsPage = new LoginPage(driver)
 //            .open()

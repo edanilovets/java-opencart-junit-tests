@@ -16,6 +16,9 @@ public class ActionPanel extends HtmlElement {
     @FindBy(css = "a[data-original-title=\"Cancel\"]")
     private WebElement cancelButton;
 
+    @FindBy(css = "button[data-original-title=\"Delete\"]")
+    private WebElement deleteButton;
+
     public void save(){
         saveButton.click();
     }
@@ -24,5 +27,8 @@ public class ActionPanel extends HtmlElement {
     }
     public void cancel() {
         cancelButton.click();
+    }
+    public void delete(){
+        deleteButton.click();
     }
 }
