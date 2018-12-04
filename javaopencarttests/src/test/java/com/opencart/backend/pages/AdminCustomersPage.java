@@ -18,7 +18,6 @@ public class AdminCustomersPage extends AdminBasePage{
 		PageFactory.initElements(new HtmlElementDecorator(new HtmlElementLocatorFactory(driver)), this);
 	}
 
-  @FindBy(css = "#content > div.page-header > div > div")
 	private ActionPanel actionPanel;
 
 	//Fields

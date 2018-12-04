@@ -2,10 +2,13 @@ package com.opencart.backend.pages;
 
 import com.opencart.backend.model.User;
 import com.opencart.backend.sections.AdminMenu;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class AdminPage extends AdminBasePage {
   public AdminPage(WebDriver driver) {
@@ -58,6 +61,8 @@ public class AdminPage extends AdminBasePage {
 
   public AdminProductsPage gotoAdminProductsPage() {
     menuCatalog.click();
+    WebDriverWait wait = new WebDriverWait(driver,5);
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"collapse1\"]/li[2]/a")));
     menuCatalogProducts.click();
     return new AdminProductsPage(driver);
   }

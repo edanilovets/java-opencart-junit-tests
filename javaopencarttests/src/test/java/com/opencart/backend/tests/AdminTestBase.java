@@ -7,15 +7,15 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 
 public class AdminTestBase {
-  WebDriver driver;
+  static WebDriver driver;
 
   @BeforeClass
-  public void init() {
+  public static void init() {
     driver = new ChromeDriver();
   }
 
   @AfterClass
-  public void tearDown() {
+  public static void tearDown() {
     driver.quit();
   }
 

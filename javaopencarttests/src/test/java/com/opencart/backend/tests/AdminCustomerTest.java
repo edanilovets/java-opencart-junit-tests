@@ -4,11 +4,8 @@ import com.opencart.backend.model.Customer;
 import com.opencart.backend.model.User;
 import com.opencart.backend.pages.AdminCustomersPage;
 import com.opencart.backend.pages.AdminPage;
-
-import org.testng.Assert;
-import org.testng.annotations.Test;
-
-
+import org.junit.Assert;
+import org.junit.Test;
 
 public class AdminCustomerTest extends AdminTestBase {
   @Test

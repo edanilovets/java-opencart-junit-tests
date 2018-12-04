@@ -2,8 +2,8 @@ package com.opencart.frontend.tests;
 
 import com.opencart.frontend.model.ProductOverview;
 import com.opencart.frontend.pages.HomePage;
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.junit.Assert;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Collections;

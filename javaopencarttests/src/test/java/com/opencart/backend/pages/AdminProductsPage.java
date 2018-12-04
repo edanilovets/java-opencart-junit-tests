@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementDecorator;
+import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory;
 
 import java.util.List;
 
@@ -14,17 +16,11 @@ public class AdminProductsPage extends AdminBasePage {
 
     AdminProductsPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(new HtmlElementDecorator(new HtmlElementLocatorFactory(driver)), this);
     }
 
     //Action Panel
-    private ActionPanel actionPanel;
-
-    //Navigation
-    @FindBy(xpath = "//*[@id=\"content\"]/div[1]/div/div/a")
-    private WebElement addNewButton;
-    @FindBy(xpath = "//*[@id=\"content\"]/div[1]/div/div/button")
-    private WebElement saveButton;
+    public ActionPanel actionPanel;
 
     //Tabs
     @FindBy(css = "#form-product > ul > li:nth-child(2) > a")
@@ -41,12 +37,12 @@ public class AdminProductsPage extends AdminBasePage {
     private WebElement productModel;
 
     public AdminProductsPage addNewProduct(Product product) {
-        addNewButton.click();
+        actionPanel.add();
         productName.sendKeys(product.getProductName());
         metaTagTitle.sendKeys(product.getMetaTagTitle());
         tabData.click();
         productModel.sendKeys(product.getProductModel());
-        saveButton.click();
+        actionPanel.save();
         return this;
     }
 
@@ -74,7 +70,7 @@ public class AdminProductsPage extends AdminBasePage {
         driver.findElement(By.cssSelector("#thumb-image")).click();
         driver.findElement(By.cssSelector("#button-image")).click();
         driver.findElement(By.cssSelector("#filemanager > div > div.modal-body > div:nth-child(3) > div:nth-child(2) > a > img")).click();
-        saveButton.click();
+        actionPanel.save();
         //actionPanel.saveButton.click();
         return this;
     }

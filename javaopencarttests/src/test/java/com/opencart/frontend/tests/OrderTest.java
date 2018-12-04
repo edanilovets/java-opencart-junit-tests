@@ -1,7 +1,7 @@
 package com.opencart.frontend.tests;
 
 import com.opencart.frontend.pages.HomePage;
-import org.testng.annotations.Test;
+import org.junit.Test;
 
 public class OrderTest extends TestBase {
   @Test
