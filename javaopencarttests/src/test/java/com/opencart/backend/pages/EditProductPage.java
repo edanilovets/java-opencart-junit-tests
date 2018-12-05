@@ -6,9 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.htmlelements.element.TextInput;
 
-public class AddProductPage extends BasePage {
+public class EditProductPage extends BasePage {
 
-    AddProductPage(WebDriver driver) {
+    EditProductPage(WebDriver driver) {
         super(driver);
     }
 
@@ -39,38 +39,34 @@ public class AddProductPage extends BasePage {
         return new ProductsPage(driver);
     }
 
-    public AddProductPage enterProductName(String name){
+    public EditProductPage enterProductName(String name){
         productName.sendKeys(name);
         return this;
     }
 
-    public AddProductPage enterMetaTagTitle(String metaTag){
+    public EditProductPage clearProductName(){
+        productName.clear();
+        return this;
+    }
+
+    public EditProductPage enterMetaTagTitle(String metaTag){
         metaTagTitle.sendKeys(metaTag);
         return this;
     }
 
-    public AddProductPage enterProductModel(String model){
+    public EditProductPage enterProductModel(String model){
         productModel.sendKeys(model);
         return this;
     }
 
-    public AddProductPage activateDataTab(){
+    public EditProductPage activateDataTab(){
         tabData.click();
         return this;
     }
 
-    public AddProductPage activateImageTab(){
+    public EditProductPage activateImageTab(){
         tabImage.click();
         return this;
     }
-
-//    public ProductsPage editProductAddImage() {
-//        tabImage.click();
-//        driver.findElement(By.cssSelector("#thumb-image")).click();
-//        driver.findElement(By.cssSelector("#button-image")).click();
-//        driver.findElement(By.cssSelector("#filemanager > div > div.modal-body > div:nth-child(3) > div:nth-child(2) > a > img")).click();
-//        actionPanel.save();
-//        return new ProductsPage(driver);
-//    }
 
 }

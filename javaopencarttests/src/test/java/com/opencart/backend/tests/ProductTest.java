@@ -3,12 +3,11 @@ package com.opencart.backend.tests;
 import com.opencart.backend.model.Product;
 import com.opencart.backend.model.ProductRegistry;
 import com.opencart.backend.model.UserRegistry;
-import com.opencart.backend.pages.AddProductPage;
 import com.opencart.backend.pages.DashboardPage;
+import com.opencart.backend.pages.EditProductPage;
 import com.opencart.backend.pages.LoginPage;
 import com.opencart.backend.pages.ProductsPage;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.concurrent.ThreadLocalRandom;
@@ -22,8 +21,8 @@ public class ProductTest extends TestBase {
     DashboardPage dashboardPage = new LoginPage(driver)
             .open()
             .loginAs(UserRegistry.getAdmin());
-    AddProductPage addProductPage = dashboardPage.openProductsPage().clickAddNew();
-    ProductsPage productsPage = addProductPage.enterProductName(product.getProductName())
+    EditProductPage editProductPage = dashboardPage.openProductsPage().clickAddNew();
+    ProductsPage productsPage = editProductPage.enterProductName(product.getProductName())
             .enterMetaTagTitle(product.getMetaTagTitle())
             .activateDataTab()
             .enterProductModel(product.getProductModel())
@@ -66,14 +65,21 @@ public class ProductTest extends TestBase {
 
 
   @Test
-  @Ignore
-  public void canEditProductAddImage(){
-//    ProductsPage adminProductsPage = new LoginPage(driver)
-//            .open()
-//            .loginAs(UserRegistry.getAdmin())
-//            .openAdminProductsPage();
-//    int index = ThreadLocalRandom.current().nextInt(0, 20);
-//    adminProductsPage.pressEditButtonByIndex(index)
-//            .editProductAddImage();
+  public void canEditExistingProductModifyProductName(){
+
+    DashboardPage dashboardPage = new LoginPage(driver)
+            .open()
+            .loginAs(UserRegistry.getAdmin());
+    int index = ThreadLocalRandom.current().nextInt(0, 10);
+    ProductsPage productsPage = dashboardPage.openProductsPage();
+    Product product = productsPage.getProductByIndex(index);
+
+    ProductsPage productsPage1 = productsPage.pressEditButtonByIndex(index)
+            .clearProductName()
+            .enterProductName("Modified Name")
+            .saveProduct();
+    Assert.assertFalse(productsPage1.isInProductsList(product));
+    product.withProductName("Modified Name");
+    Assert.assertTrue(productsPage1.isInProductsList(product));
   }
 }

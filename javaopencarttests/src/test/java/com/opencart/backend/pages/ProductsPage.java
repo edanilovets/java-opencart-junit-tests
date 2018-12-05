@@ -23,9 +23,9 @@ public class ProductsPage extends BasePage {
     @FindBy(css = "#form-product > div > table")
     private ProductsTable productsTable;
 
-    public AddProductPage clickAddNew(){
+    public EditProductPage clickAddNew(){
         actionPanel.add();
-        return new AddProductPage(driver);
+        return new EditProductPage(driver);
     }
 
     public ProductsPage deleteProduct(){
@@ -51,10 +51,10 @@ public class ProductsPage extends BasePage {
         return !isInProductsList(product);
     }
 
-    public AddProductPage pressEditButtonByIndex(int index) {
+    public EditProductPage pressEditButtonByIndex(int index) {
         WebElement editButton = driver.findElements(By.cssSelector("#form-product > div > table > tbody > tr > td > a")).get(index);
         editButton.click();
-        return new AddProductPage(driver);
+        return new EditProductPage(driver);
     }
 
     public ProductsPage selectProductByIndex(int index) {

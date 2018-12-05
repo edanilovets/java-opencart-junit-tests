@@ -1,6 +1,7 @@
 package com.opencart.backend.pages;
 
 import com.opencart.backend.sections.AdminMenu;
+import com.opencart.backend.sections.ProfileBar;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -17,12 +18,16 @@ public class BasePage {
 
   @FindBy(id = "menu")
   private AdminMenu adminMenu;
+  private ProfileBar profileBar;
 
   //Admin Menu methods
-
   public ProductsPage openProductsPage(){
     adminMenu.clickCatalog();
     adminMenu.clickCatalogProducts();
     return new ProductsPage(driver);
+  }
+  public LoginPage logout(){
+    profileBar.clickLogout();
+    return new LoginPage(driver);
   }
 }

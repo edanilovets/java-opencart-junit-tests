@@ -8,5 +8,4 @@ public class DashboardPage extends BasePage {
         super(driver);
     }
 
-
 }
