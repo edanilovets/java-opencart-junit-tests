@@ -2,15 +2,12 @@ package com.opencart.backend.pages;
 
 import com.opencart.backend.model.Product;
 import com.opencart.backend.sections.ActionPanel;
-import com.opencart.backend.sections.AdminMenu;
+import com.opencart.backend.sections.ProductsTable;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementDecorator;
-import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory;
 
 import java.util.List;
 
@@ -22,6 +19,9 @@ public class ProductsPage extends BasePage {
 
     @FindBy(css = "#content > div.page-header > div > div")
     private ActionPanel actionPanel;
+
+    @FindBy(css = "#form-product > div > table")
+    private ProductsTable productsTable;
 
     public AddProductPage clickAddNew(){
         actionPanel.add();

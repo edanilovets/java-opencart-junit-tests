@@ -1,9 +1,12 @@
 package com.opencart.backend.tests;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class CustomerTest extends TestBase {
+
   @Test
+  @Ignore
   public void canAddNewCustomer() {
 //    User admin = new User("admin", "admin");
 //    Customer customer = new Customer()

@@ -4,6 +4,7 @@ import com.opencart.backend.sections.ActionPanel;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import ru.yandex.qatools.htmlelements.element.TextInput;
 
 public class AddProductPage extends BasePage {
 
@@ -22,11 +23,11 @@ public class AddProductPage extends BasePage {
 
     //Fields
     @FindBy(id = "input-name1")
-    private WebElement productName;
+    private TextInput productName;
     @FindBy(id = "input-meta-title1")
-    private WebElement metaTagTitle;
+    private TextInput metaTagTitle;
     @FindBy(id = "input-model")
-    private WebElement productModel;
+    private TextInput productModel;
 
     public ProductsPage cancelProductEditing() {
         actionPanel.cancel();
