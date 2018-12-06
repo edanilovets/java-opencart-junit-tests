@@ -23,7 +23,7 @@ public class ProductsPage extends BasePage {
     @FindBy(css = "#form-product > div > table")
     private ProductsTable productsTable;
 
-    public EditProductPage clickAddNew(){
+    public EditProductPage clickAddNewProductButton(){
         actionPanel.add();
         return new EditProductPage(driver);
     }
