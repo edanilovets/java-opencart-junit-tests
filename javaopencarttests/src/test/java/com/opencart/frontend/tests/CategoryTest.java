@@ -1,7 +1,9 @@
 package com.opencart.frontend.tests;
 
 import com.opencart.frontend.model.ProductOverview;
+import com.opencart.frontend.pages.CategoryPage;
 import com.opencart.frontend.pages.HomePage;
+import io.qameta.allure.junit4.DisplayName;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -13,13 +15,16 @@ import java.util.Comparator;
 public class CategoryTest extends TestBase{
 
   @Test
+  @DisplayName("Sorting of products in category by Name (A - Z)")
   public void canSortByNameAsc() {
-    //option Sort By: Name (A - Z)
+
     ArrayList<ProductOverview> before;
     ArrayList<ProductOverview> after;
 
-    homePage = new HomePage(driver).open();
-    categoryPage = homePage.clickShowAllinFirstMenuItem();
+    CategoryPage categoryPage = new HomePage(driver)
+            .open()
+            .showAll("Desktops");
+
     before = categoryPage.getListOfProductOverviews();
     categoryPage.selectSortBy("Name (A - Z)");
     after = categoryPage.getListOfProductOverviews();
@@ -31,13 +36,16 @@ public class CategoryTest extends TestBase{
   }
 
   @Test
+  @DisplayName("Sorting of products in category by Name (Z - A)")
   public void canSortByNameDesc(){
-    //option Sort By: Name (Z - A)
+
     ArrayList<ProductOverview> before;
     ArrayList<ProductOverview> after;
 
-    homePage = new HomePage(driver).open();
-    categoryPage = homePage.clickShowAllinFirstMenuItem();
+    CategoryPage categoryPage = new HomePage(driver)
+            .open()
+            .showAll("Desktops");
+
     before = categoryPage.getListOfProductOverviews();
     categoryPage.selectSortBy("Name (Z - A)");
     after = categoryPage.getListOfProductOverviews();
@@ -54,13 +62,16 @@ public class CategoryTest extends TestBase{
   }
 
   @Test
+  @DisplayName("Sorting of products in category by Price (Low > High)")
   public void canSortByPriceAsc(){
-    //option Sort By: Price (Low > High)
+
     ArrayList<ProductOverview> before;
     ArrayList<ProductOverview> after;
 
-    homePage = new HomePage(driver).open();
-    categoryPage = homePage.clickShowAllinFirstMenuItem();
+    CategoryPage categoryPage = new HomePage(driver)
+            .open()
+            .showAll("Desktops");
+
     before = categoryPage.getListOfProductOverviews();
     categoryPage.selectSortBy("Price (Low > High)");
     after = categoryPage.getListOfProductOverviews();
@@ -71,13 +82,16 @@ public class CategoryTest extends TestBase{
   }
 
   @Test
+  @DisplayName("Sorting of products in category by Price Price (High > Low)")
   public void canSortByPriceDesc(){
-    //option Sort By: Price (High > Low)
+
     ArrayList<ProductOverview> before;
     ArrayList<ProductOverview> after;
 
-    homePage = new HomePage(driver).open();
-    categoryPage = homePage.clickShowAllinFirstMenuItem();
+    CategoryPage categoryPage = new HomePage(driver)
+            .open()
+            .showAll("Desktops");
+
     before = categoryPage.getListOfProductOverviews();
     categoryPage.selectSortBy("Price (High > Low)");
     after = categoryPage.getListOfProductOverviews();

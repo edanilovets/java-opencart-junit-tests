@@ -4,7 +4,9 @@ import com.opencart.backend.model.Product;
 import com.opencart.backend.pages.DashboardPage;
 import com.opencart.backend.pages.LoginPage;
 import com.opencart.backend.pages.ProductsPage;
+import io.qameta.allure.junit4.DisplayName;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.concurrent.ThreadLocalRandom;
@@ -14,6 +16,7 @@ import static com.opencart.backend.model.UserRegistry.*;
 public class ProductTest extends TestBase {
 
   @Test
+  @DisplayName("Adding of New product with only required fields")
   public void canAddNewProductOnlyWithRequiredFields(){
     Product product = getProduct();
 
@@ -35,6 +38,7 @@ public class ProductTest extends TestBase {
   }
 
   @Test
+  @DisplayName("Canceling adding of New product after name and meta tag are entered")
   public void canCancelAddingOfNewProduct(){
     Product product = getProduct();
 
@@ -53,6 +57,7 @@ public class ProductTest extends TestBase {
   }
 
   @Test
+  @DisplayName("Deletion product from product list")
   public void canDeleteProductFromList(){
 
     //index for selecting product
@@ -72,6 +77,8 @@ public class ProductTest extends TestBase {
 
 
   @Test
+  @Ignore
+  @DisplayName("Modify name of existing product")
   public void canEditExistingProductModifyProductName(){
 
     //index for selecting product

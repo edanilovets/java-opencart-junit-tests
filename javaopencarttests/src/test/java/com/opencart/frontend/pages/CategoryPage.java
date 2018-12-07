@@ -4,8 +4,6 @@ import com.opencart.frontend.model.ProductOverview;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
@@ -14,7 +12,6 @@ import java.util.List;
 public class CategoryPage extends BasePage {
   CategoryPage(WebDriver driver) {
     super(driver);
-    PageFactory.initElements(driver, this);
   }
 
   public void selectSortBy(String text) {
@@ -37,16 +34,6 @@ public class CategoryPage extends BasePage {
       productOverviews.add(new ProductOverview().withName(name).withDescription(description).withPrice(resultPrice));
     }
     return productOverviews;
-  }
-
-  public void mouseOverMainMenuItemByLinkText(String link){
-    Actions action = new Actions(driver);
-    List<WebElement> topLevelMenuItems = driver.findElements(By.cssSelector("#leftMenu > div > ul > li > a"));
-    for (WebElement item: topLevelMenuItems){
-      if (item.getText().equals(link)) {
-        action.moveToElement(item).build().perform();
-      }
-    }
   }
 
 }

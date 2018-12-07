@@ -1,34 +1,22 @@
 package com.opencart.frontend.tests;
 
-import com.opencart.frontend.pages.HomePage;
-import org.junit.Assert;
+import io.qameta.allure.junit4.DisplayName;
+import org.junit.Ignore;
 import org.junit.Test;
 
 
 public class CustomerRegisterTest extends TestBase {
   
   @Test
+  @Ignore
+  @DisplayName("Customer register without subscription")
   public void customerRegisterWithoutSubscription() {
-    homePage = new HomePage(driver).open();
-    homePage.clickMyAccount();
-    registerPage = homePage.clickRegister();
 
-    //Fill form on register page
-    registerPage.setFirstName("Eugene");
-    registerPage.setLastName("Danilovets");
-    registerPage.setEmail("eugene.danilovets@gmail.com");
-    registerPage.setPhone("+38099-333-22-11");
-    registerPage.setPassword("111111");
-    registerPage.setConfirm("111111");
-    registerPage.checkPrivatePolicy();
-
-    successPage = registerPage.clickContinue();
-    Assert.assertEquals(successPage.getSuccessMessage(),
-            "Congratulations! Your new account has been successfully created!");
   }
   
   @Test
+  @Ignore
+  @DisplayName("Customer register with subscription")
   public void customerRegisterWithSubscription() {
-    //todo: Implement test
   }
 }

@@ -6,7 +6,7 @@ public class Product {
   private String productModel;
 
   public String getProductName() {
-    return productName;
+    return productName ;
   }
 
   public Product withProductName(String productName) {
