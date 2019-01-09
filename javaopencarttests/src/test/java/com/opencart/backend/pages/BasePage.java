@@ -21,12 +21,18 @@ public class BasePage {
   private ProfileBar profileBar;
 
   //Admin Menu methods
-  public ProductsPage openProductsPage(){
+  public ProductsPage openProductsPage() {
     adminMenu.clickCatalog();
     adminMenu.clickCatalogProducts();
     return new ProductsPage(driver);
   }
-  public LoginPage logout(){
+
+  public DashboardPage openDashboardPage() {
+    adminMenu.clickDashboard();
+    return new DashboardPage(driver);
+  }
+
+  public LoginPage logout() {
     profileBar.clickLogout();
     return new LoginPage(driver);
   }

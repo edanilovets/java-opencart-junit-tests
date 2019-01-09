@@ -1,8 +1,6 @@
 package com.opencart.backend.tests;
 
 import com.opencart.backend.model.Product;
-import com.opencart.backend.pages.DashboardPage;
-import com.opencart.backend.pages.LoginPage;
 import com.opencart.backend.pages.ProductsPage;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.Assert;
@@ -10,19 +8,15 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.concurrent.ThreadLocalRandom;
-import static com.opencart.backend.model.ProductRegistry.*;
-import static com.opencart.backend.model.UserRegistry.*;
 
-public class ProductTest extends TestBase {
+import static com.opencart.backend.model.ProductRegistry.getProduct;
+
+public class ProductTest extends TestBaseRules {
 
   @Test
   @DisplayName("Adding of New product with only required fields")
   public void canAddNewProductOnlyWithRequiredFields(){
     Product product = getProduct();
-
-    DashboardPage dashboardPage = new LoginPage(driver)
-            .open()
-            .loginAs(getAdmin());
 
     ProductsPage productsPage = dashboardPage
             .openProductsPage()
@@ -42,10 +36,6 @@ public class ProductTest extends TestBase {
   public void canCancelAddingOfNewProduct(){
     Product product = getProduct();
 
-    DashboardPage dashboardPage = new LoginPage(driver)
-            .open()
-            .loginAs(getAdmin());
-
     Assert.assertTrue(dashboardPage.openProductsPage().isNotInProductsList(product));
     Assert.assertTrue(dashboardPage
             .openProductsPage()
@@ -63,10 +53,6 @@ public class ProductTest extends TestBase {
     //index for selecting product
     int index = ThreadLocalRandom.current().nextInt(0, 10);
 
-    DashboardPage dashboardPage = new LoginPage(driver)
-            .open()
-            .loginAs(getAdmin());
-
     ProductsPage productsPage = dashboardPage.openProductsPage();
     Product product = productsPage.getProductByIndex(index);
 
@@ -83,10 +69,6 @@ public class ProductTest extends TestBase {
 
     //index for selecting product
     int index = ThreadLocalRandom.current().nextInt(0, 10);
-
-    DashboardPage dashboardPage = new LoginPage(driver)
-            .open()
-            .loginAs(getAdmin());
 
     ProductsPage productsPage = dashboardPage.openProductsPage();
     Product product = productsPage.getProductByIndex(index);

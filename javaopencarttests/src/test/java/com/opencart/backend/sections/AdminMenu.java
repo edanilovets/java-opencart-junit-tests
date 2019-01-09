@@ -19,10 +19,17 @@ public class AdminMenu extends HtmlElement {
     @FindBy(xpath = "//*[@id=\"collapse33\"]/li[1]/a")
     private WebElement menuCustomerCustomer;
 
+    @FindBy(id = "menu-dashboard")
+    private WebElement menuDashboard;
+
     public void clickCatalog(){
         menuCatalog.click();
     }
     public void clickCatalogProducts(){
         menuCatalogProducts.click();
+    }
+
+    public void clickDashboard() {
+        menuDashboard.click();
     }
 }
